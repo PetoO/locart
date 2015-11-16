@@ -12,4 +12,11 @@
  *
  *= require_tree .
  *= require_self
+ *= require bootstrap-tokenfield
  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+#map{
+	width: 800px; height: 400px;
+}

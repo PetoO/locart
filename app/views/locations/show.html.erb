@@ -1,0 +1,60 @@
+<h1>
+  <%= @location.title %>
+</h1>
+<p>
+  <%= @location.description %>
+</p>
+<p>
+  <%= @location.user.name %>
+</p>
+<p>
+  <%= @location.image %>
+</p>
+<p>
+  <%= image_tag @location.image.url %>
+</p>
+<p>
+  Tags
+  <%= @location.tag_list.join(", ") %>
+</p>
+<p>
+  <%= @location.lon %>
+  Lon
+</p>
+<p>
+  <%= @location.lat %>
+  Lat
+</p>
+<p>
+  <%= @location.get_upvotes.size %>
+  Likes
+</p>
+<p>
+  <%= @location.get_downvotes.size %>
+  Dislikes	
+</p>
+<%= link_to "Like", like_location_path(@location), method: :get %>
+<%= link_to "Dislike", dislike_location_path(@location), method: :get %>
+<div id="map"></div>
+<div id="comments">
+  <h2 class="comment_count">
+    <%= pluralize(@location.comments.count, "Comment") %>
+  </h2>
+  <% @comments.each do |comment| %>
+    <div class="comment">
+      <p class="username">
+        <%= comment.user.name %>
+      </p>
+      <p class="content">
+        <%= comment.content %>
+      </p>
+    </div>
+  <% end %>
+  <%= render "comments/form" %>
+</div>
+<%= link_to "Edit", edit_location_path(@location) %>
+<%= link_to "Delete", location_path(@location), method: :delete, data: {confirm: "Are you sure?"} %>
+<%= link_to "Home", root_path %>
+
+
+<%= render "gmaps_show" %>

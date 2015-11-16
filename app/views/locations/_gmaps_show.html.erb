@@ -1,0 +1,27 @@
+<script type="text/javascript">
+	var map;
+	var marker;
+	var mLat = <%= (!@location.lat.nil?) ? @location.lat : 0 %>; 
+	var mLon = <%= (!@location.lon.nil?) ? @location.lon : 0 %>;
+	var latt = mLat;
+	var lonn = mLon;
+
+	function initMap() {
+		map = new google.maps.Map(document.getElementById('map'), {
+			center: {lat: latt, lng: lonn},
+			zoom: 8,
+			minZoom: 5,
+			maxZoom: 20,
+			streetViewControl: false
+		});
+
+		marker = new google.maps.Marker({
+			position: {lat: mLat, lng: mLon},
+			map: map
+		});
+
+	}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcqE12ESGUv4dfzOuWrYGJiMuGcRQIZM4&callback=initMap"
+        async defer></script>
