@@ -3,13 +3,22 @@
 	var marker;
 	var mLat = <%= (!@location.lat.nil?) ? @location.lat : 0 %>; 
 	var mLon = <%= (!@location.lon.nil?) ? @location.lon : 0 %>;
+	var zoomm = 10;
 	var latt = mLat;
+		if(mLat === 0){ 
+			latt = 48.7205557; 
+			zoomm = 7;
+		}
 	var lonn = mLon;
+		if(mLon === 0){ 
+			lonn = 19.7619074;
+			zoomm = 7; 
+		}
 
 	function initMap() {
 		map = new google.maps.Map(document.getElementById('map'), {
 			center: {lat: latt, lng: lonn},
-			zoom: 8,
+			zoom: zoomm,
 			minZoom: 5,
 			maxZoom: 20,
 			streetViewControl: false

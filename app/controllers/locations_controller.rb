@@ -3,8 +3,28 @@ class LocationsController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show]
 
 	def index
-		@locations = Location.all.order "created_at DESC"
-		
+		 @locations = Location.order("created_at DESC").paginate(:page => params[:page],:per_page => 2)
+		# @locations = Location.order("created_at DESC").paginate(:page => params[:page],:per_page => 2)
+		# @locations = Location.order("created_at DESC").tagged_with(:tag).paginate(:page => params[:page],:per_page => 2)
+	end
+
+	def category
+		@locations = Location.all.order("created_at DESC").tagged_with(params[:tag]).paginate(:page => params[:page],:per_page => 2)
+		render 'all'
+	end
+
+	def all
+		@locations = Location.all.order("created_at DESC").paginate(:page => params[:page],:per_page => 2)
+	end
+
+	def search
+		@locations = Location.all.order("created_at DESC").where("title LIKE ? ", "%#{params[:q]}%").paginate(:page => params[:page],:per_page => 2)
+		render 'all'
+	end	
+
+	def my
+		@locations = Location.all.order("created_at DESC").where(user_id: current_user.id).order("created_at DESC").paginate(:page => params[:page],:per_page => 2)
+		render 'all'
 	end
 
 	def show
@@ -39,6 +59,7 @@ class LocationsController < ApplicationController
 	end
 
 	def edit
+		@tag_list = @location.tag_list.join(", ")
 	end
 
 	def update
@@ -71,6 +92,6 @@ class LocationsController < ApplicationController
 	end
 
 	def location_params
-		params.require(:location).permit( :title, :description, :image, :lon, :lat, :tag_list)
+		params.require(:location).permit( :title, :description, :image, :lon, :lat, :tag_list, :page)
 	end	
 end

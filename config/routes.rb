@@ -8,6 +8,11 @@ Rails.application.routes.draw do
     end
     resources :comments
   end
+  get '/locations/category/:tag', to: 'locations#category'
+  get '/all', to: 'locations#all'
+  # get '/search/:search', to: 'locations#search'
+  get '/search', to: 'locations#search'
+  get '/my', to: 'locations#my'
   root 'locations#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -15,7 +15,11 @@
 </p>
 <p>
   Tags
-  <%= @location.tag_list.join(", ") %>
+  <% @location.tag_list.each do |tag| %>
+  <span class="badge tag">
+  <%= link_to tag, "category/"+tag %>
+  </span>
+  <% end %>
 </p>
 <p>
   <%= @location.lon %>

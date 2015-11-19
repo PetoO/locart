@@ -1,0 +1,17 @@
+<% @locations.each do |location| %>
+  <h2>
+    <%= link_to location.title, location %>
+  </h2>
+  <p>
+    <%= location.comments.count %>
+    Comments
+  </p>
+  <p>
+    <%= location.get_likes.size %>
+    Likes
+  </p>
+<% end %>
+
+<%= will_paginate @locations %>
+
+<%= link_to "Add New Location", new_location_path %>

@@ -4,12 +4,21 @@
   <%= f.input :image, :as => :file %>
   <%= f.input :lon %>
   <%= f.input :lat %>
-  <%= f.input :tag_list, value: @location.tag_list.to_s %>
+  <%= f.input :tag_list, :placeholder => "Tags values are separated by commas" %>	
   <!-- = f.input :image_cache, :as => :hidden
   -->
   <%= f.button :submit %>
 <% end %>
 
 <div id="map"></div>
+
+<!-- kedze token field absolutne nechape ze tie hodnoty su s ciarkou, tak to tam musim dat cez jquery  lebo inak si mysli ze su bez a teda namiesto 10 tokenov je jeden velkkyyy-->
+
+<script type="text/javascript">
+	console.log("<%= @tag_list %>");
+	$('#location_tag_list').val("<%= @tag_list %>");
+</script>
+
+<%= render "tokens" %>
 
 <%= render "gmaps_set_update" %>
