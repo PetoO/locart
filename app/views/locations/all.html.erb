@@ -1,17 +1,25 @@
+<h1 class="text-center">
+    <%= @header %>
+</h1>
 <% @locations.each do |location| %>
+  <div class="col-md-3 col-xs-6">
+      <div class="thumbnail" >
+          
+          <%= link_to image_tag(location.image.url("thumbnail")), location %>
+        <p class="text-right comments-likes">  
+        <%= location.comments.count %> <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+        <%= location.get_likes.size %> <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+        </p>
+
+      <p class="text-center"><strong><%= link_to location.title, location %> </strong></p>  
+    </div>
+  </div>
+
   <h2>
-    <%= link_to location.title, location %>
+    <% link_to location.title, location %>
   </h2>
-  <p>
-    <%= location.comments.count %>
-    Comments
-  </p>
-  <p>
-    <%= location.get_likes.size %>
-    Likes
-  </p>
 <% end %>
 
-<%= will_paginate @locations %>
-
-<%= link_to "Add New Location", new_location_path %>
+<div class="pagination text-center col-md-12 col-xs-12">
+  <%= will_paginate @locations, renderer: BootstrapPagination::Rails %>
+</div>

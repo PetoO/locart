@@ -36,6 +36,7 @@ gem 'bootstrap_tokenfield_rails', '~> 0.12.1'
 
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'will_paginate', '~> 3.0', '>= 3.0.7'
+gem 'will_paginate-bootstrap'
 
 gem 'rails_12factor', group: :production
 # Use ActiveModel has_secure_password

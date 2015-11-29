@@ -1,64 +1,119 @@
-<h1>
-  <%= @location.title %>
-</h1>
-<p>
-  <%= @location.description %>
-</p>
-<p>
-  <%= @location.user.name %>
-</p>
-<p>
-  <%= @location.image %>
-</p>
-<p>
-  <%= image_tag @location.image.url %>
-</p>
-<p>
-  Tags
-  <% @location.tag_list.each do |tag| %>
-  <span class="badge tag">
-  <%= link_to tag, "category/"+tag %>
-  </span>
-  <% end %>
-</p>
-<p>
-  <%= @location.lon %>
-  Lon
-</p>
-<p>
-  <%= @location.lat %>
-  Lat
-</p>
-<p>
-  <%= @location.get_upvotes.size %>
-  Likes
-</p>
-<p>
-  <%= @location.get_downvotes.size %>
-  Dislikes	
-</p>
-<%= link_to "Like", like_location_path(@location), method: :get %>
-<%= link_to "Dislike", dislike_location_path(@location), method: :get %>
-<div id="map"></div>
-<div id="comments">
-  <h2 class="comment_count">
-    <%= pluralize(@location.comments.count, "Comment") %>
-  </h2>
-  <% @comments.each do |comment| %>
-    <div class="comment">
-      <p class="username">
-        <%= comment.user.name %>
-      </p>
-      <p class="content">
-        <%= comment.content %>
-      </p>
-    </div>
-  <% end %>
-  <%= render "comments/form" %>
-</div>
-<%= link_to "Edit", edit_location_path(@location) %>
-<%= link_to "Delete", location_path(@location), method: :delete, data: {confirm: "Are you sure?"} %>
-<%= link_to "Home", root_path %>
+<div class="row">
+  <div class="col-md-12 col-xs-12">
+    <h1 class="location_title">
+      <%= @location.title %>
+    </h1>
+  </div>
 
+
+  <div class="col-md-8 col-xs-12">
+    <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 736px; height: 456px;">
+        <!-- Slides Container -->
+        <div u="slides" style="cursor: move; position: absolute; overflow: hidden; left: 0px; top: 0px; width: 730px; height: 450px;">
+          <%= image_tag @location.image.url, u: "image" %>
+          <% @photos.each do |photo| %>
+            <div><%= image_tag photo.photo.url, u: "image" %></div>
+          <% end %>
+        </div>
+    </div>
+
+    <div class="row ">
+        <div class="col-md-6 col-xs-6 text-center"> 
+                I love this place! :)
+                <%= link_to like_location_path(@location), :class => "btn" do %>
+                  <span class="glyphicon glyphicon-thumbs-up" style="color:#000000;font-size: 30px; padding-right: 15px;"></span>
+                <% end %>
+        </div>
+        <div class="col-md-6 col-xs-6 text-center"> 
+                I don`t like it :(
+                <%= link_to dislike_location_path(@location), :class => "btn" do %>
+                  <span class="glyphicon glyphicon-thumbs-down" style="color:#000000;font-size: 30px; padding-right: 15px;"></span>
+                <% end %>
+        </div>
+      
+    </div>
+  </div>
+
+
+
+  <div class="col-md-4 col-sx-12">
+      <ul class="list-group">
+        <li class="list-group-item">
+            <span class="glyphicon glyphicon-user" style="font-size:25px;color:black;padding-right:15px;padding-left:13px"></span> <%= @location.user.name %>
+        </li>
+        <li class="list-group-item">
+            <%= link_to like_location_path(@location), :class => "btn" do %>
+              <span class="glyphicon glyphicon-thumbs-up" style="font-size:25px;color:black;"></span>
+            <% end %>
+            <%= @location.get_upvotes.size %> Likes
+        </li>
+        <li class="list-group-item">
+            
+            <%= link_to dislike_location_path(@location), :class => "btn" do %>
+              <span class="glyphicon glyphicon-thumbs-down" style="font-size:25px;color:black;"></span>
+            <% end %>
+            <%= @location.get_downvotes.size %> Dislikes 
+        </li>
+        <li class="list-group-item">
+            <span class="glyphicon glyphicon-map-marker" style="font-size:25px;color:black;padding-right:15px;padding-left:13px"></span>
+            Lon <%= @location.lon %>, Lat <%= @location.lat %>
+        </li>
+        <li class="list-group-item" style="padding-left:13px">
+            <span class="glyphicon glyphicon glyphicon-tags" style="font-size:25px;color:black;padding-right:15px;padding-left:13px"></span>
+            <% @location.tag_list.each do |tag| %>
+            <span class="badge tag">
+            <%= link_to tag, "category/"+tag %>
+            </span>
+            <% end %>
+        </li>
+        <li class="list-group-item">
+          <% if user_signed_in? and current_user.name==@location.user.name %>
+            <%= link_to "Edit", edit_location_path(@location) , class: "btn btn-default edit_btn"%>
+            <%= link_to "Delete", location_path(@location), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default edit_btn" %>
+          <% else %>
+            <%= simple_form_for [@location, @location.photos.build] do |f| %>
+              <%= f.input :photo, label: "Add Photo to this location", input_html: { class: 'form-control' }, wrapper_html: { class: 'form-group' } %>
+              <%= f.button :submit,"Add Photo", class: "btn" %>
+            <% end %>
+          <% end %>
+        </li>
+      </ul>
+  </div>
+    <div class="col-md-8 col-xs-12">
+    <h2>
+    Description
+    </h2>
+        <p>
+            <%= @location.description %>
+        </p>
+
+        <div id="comments">
+          <h3 class="comment_count">
+            <%= pluralize(@location.comments.count, "Comment") %>
+          </h3>
+          <% @comments.each do |comment| %>
+            <div class="comment">
+              <p class="username">
+                <%= comment.user.name %> comented on <%= comment.created_at.strftime('%d %B %Y') %>:
+              </p>
+              <p class="content">
+              "<%= comment.content %>"
+              </p>
+            </div>
+          <% end %>
+          <%= render "comments/form" %>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-xs-12">
+        <div id="map_small">
+        </div>
+    </div>
+</div>
 
 <%= render "gmaps_show" %>
+<%= render "jssor.slider.mini" %>
+
+
+
+

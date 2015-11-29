@@ -1,29 +1,31 @@
 class LocationsController < ApplicationController
 	before_action :find_location, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
-	before_action :authenticate_user!, except: [:index, :show]
+	before_action :authenticate_user!, except: [:index, :show, :category, :all, :search]
 
 	def index
-		 @locations = Location.order("created_at DESC").paginate(:page => params[:page],:per_page => 2)
-		# @locations = Location.order("created_at DESC").paginate(:page => params[:page],:per_page => 2)
-		# @locations = Location.order("created_at DESC").tagged_with(:tag).paginate(:page => params[:page],:per_page => 2)
+		 @locations = Location.order("created_at DESC").paginate(:page => params[:page],:per_page => 24)
+
 	end
 
 	def category
-		@locations = Location.all.order("created_at DESC").tagged_with(params[:tag]).paginate(:page => params[:page],:per_page => 2)
+		@locations = Location.all.order("created_at DESC").tagged_with(params[:tag]).paginate(:page => params[:page],:per_page => 24)
 		render 'all'
 	end
 
 	def all
-		@locations = Location.all.order("created_at DESC").paginate(:page => params[:page],:per_page => 2)
+		@locations = Location.all.order("created_at DESC").paginate(:page => params[:page],:per_page => 24)
 	end
 
 	def search
-		@locations = Location.all.order("created_at DESC").where("title LIKE ? ", "%#{params[:q]}%").paginate(:page => params[:page],:per_page => 2)
+		@locations = Location.all.order("created_at DESC").where("title LIKE ? ", "%#{params[:q]}%").paginate(:page => params[:page],:per_page => 24)
 		render 'all'
 	end	
 
 	def my
-		@locations = Location.all.order("created_at DESC").where(user_id: current_user.id).order("created_at DESC").paginate(:page => params[:page],:per_page => 2)
+		@locations = Location.all.order("created_at DESC").where(user_id: current_user.id).order("created_at DESC").paginate(:page => params[:page],:per_page => 24)
+		if @locations.empty?
+			flash[:notice] = "You have no locations created yet!"
+		end
 		render 'all'
 	end
 
@@ -32,8 +34,7 @@ class LocationsController < ApplicationController
 	# 	@photos = Photo.where(location_id: @location).order("created_at desc").to_a
 		@comments = Comment.where(location_id: @location) 
 		@tags = Location.find(params[:id]).tag_list
-
-	#	@random_location = location.where.not(id: @location).order("RANDOM()").first
+		@photos = Photo.where(location_id: @location)
 	end
 
 	def new

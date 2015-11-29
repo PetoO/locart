@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get 'dislike', to: "locations#downvote" 
     end
     resources :comments
+    resources :photos
   end
   get '/locations/category/:tag', to: 'locations#category'
   get '/all', to: 'locations#all'

@@ -5,17 +5,56 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-
   
 </head>
 <body>
-<%= render "layouts/user_controls" %>
-<%= render "locations/search" %>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<nav class="navbar navbar-inverse navbar-fixed-top" >
+    <div class="container">
+        <div class="navbar-header">
+          	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            	<span class="sr-only">Toggle navigation</span>
+            	<span class="icon-bar"></span>
+            	<span class="icon-bar"></span>
+            	<span class="icon-bar"></span>
+          	</button>
+        	<%= link_to "LocArt", root_path, class: "navbar-brand" %>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+        	<ul class="nav navbar-nav navbar-right">
+        		<li>
+        			<%= render "locations/search" %>
+        		</li>
+	        	<%= render "layouts/user_controls" %>
+      		</ul>	  
+        </div><!--/.navbar-collapse -->
+    </div>
+</nav>      
+
+
+
+<div class="container">
+
+	<% if notice %>
+	<div class="alert alert-warning alert-dismissible fade in" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <p class="notice"><%= notice %></p> </div>
+	<% end %>
+
+	<% if alert %>
+	<div class="alert alert-danger alert-dismissible fade in" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <p class="notice"><%= alert %></p> </div>
+	<% end %>
+
 
 <%= yield %>
+
+</div>
+
+
+<footer class="text-center">
+  <a class="up-arrow" href="#nav" data-toggle="tooltip" title="TO TOP" >
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a><br>
+  <p>Made by OMG TEAM</p> 
+</footer>
 
 
 </body>

@@ -1,16 +1,18 @@
-<%= simple_form_for @location do |f| %>
-  <%= f.input :title %>
-  <%= f.input :description %>
-  <%= f.input :image, :as => :file %>
-  <%= f.input :lon %>
-  <%= f.input :lat %>
-  <%= f.input :tag_list, :placeholder => "Tags values are separated by commas" %>	
-  <!-- = f.input :image_cache, :as => :hidden
-  -->
-  <%= f.button :submit %>
-<% end %>
 
-<div id="map"></div>
+  <div class="col-md-6 col-xs-12">
+      <%= simple_form_for @location do |f| %>
+        <%= f.input :title, input_html: { class: 'form-control' }, wrapper_html: { class: 'form-group' }  %>
+        <%= f.input :description,input_html: { class: 'form-control' }, wrapper_html: { class: 'form-group' }  %>
+        <%= f.input :image, :as => :file,input_html: { class: 'form-control' }, wrapper_html: { class: 'form-group' }  %>
+        <%= f.input :lon,input_html: { class: 'form-control' }, wrapper_html: { class: 'form-group' }  %>
+        <%= f.input :lat ,input_html: { class: 'form-control' }, wrapper_html: { class: 'form-group' } %>
+        <%= f.input :tag_list, :placeholder => "Tags values are separated by commas" ,input_html: { class: 'form-control' }, wrapper_html: { class: 'form-group' } %>	
+        <%= f.button :submit, class: "btn btn-success" %>
+      <% end %>
+  </div>
+  <div class="col-md-6 col-xs-12 map_div">
+    <div id="map"></div>
+  </div>
 
 <!-- kedze token field absolutne nechape ze tie hodnoty su s ciarkou, tak to tam musim dat cez jquery  lebo inak si mysli ze su bez a teda namiesto 10 tokenov je jeden velkkyyy-->
 

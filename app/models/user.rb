@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
   has_many :locations, dependent: :destroy
   has_many :comments, dependent: :destroy
   mount_uploader :avatar, AvatarUploader
+  has_many :photos, dependent: :destroy
 end

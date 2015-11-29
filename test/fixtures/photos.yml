@@ -1,15 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  location_id: 1
-  user_id: 1
+  photo: MyString
   title: MyString
-  image: MyString
-  bytes: 1
+  user_id: 
+  location_id: 
 
 two:
-  location_id: 1
-  user_id: 1
+  photo: MyString
   title: MyString
-  image: MyString
-  bytes: 1
+  user_id: 
+  location_id: 
