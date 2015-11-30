@@ -15,7 +15,7 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require bootstrap-tokenfield
-//= require jssor.slider.min
 //= require twitter/typeahead
+//= require_tree .
 
 
