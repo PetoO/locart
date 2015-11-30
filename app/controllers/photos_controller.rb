@@ -8,7 +8,8 @@ class PhotosController < ApplicationController
 		if @photo.save 
 			redirect_to location_path(@location)
 		else
-			render 'new'
+			
+			redirect_to location_path(@location)
 		end
 	end
 end

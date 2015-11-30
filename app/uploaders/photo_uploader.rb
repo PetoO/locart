@@ -6,14 +6,14 @@ class PhotoUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
   include Cloudinary::CarrierWave
-
   # Choose what kind of storage to use for this uploader:
   # storage :file
   # storage :fog
 
   version :middle do
-    process :resize_to_fit => [730, 450]
+    process :resize_to_limit => [730, 450]
   end
+
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   # def store_dir
