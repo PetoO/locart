@@ -1,31 +1,39 @@
 class LocationsController < ApplicationController
+	include ActionView::Helpers::TextHelper
 	before_action :find_location, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
-	before_action :authenticate_user!, except: [:index, :show, :category, :all, :search]
+	before_action :authenticate_user!, except: [:index, :show, :category, :all, :search, :categories]
 
 	def index
-		 @locations = Location.order("created_at DESC").paginate(:page => params[:page],:per_page => 24)
+		 @latest_locations = Location.order("created_at DESC").paginate(:page => params[:page],:per_page => 4)
+		 @most_locations = Location.order("created_at DESC").paginate(:page => params[:page],:per_page => 4)
+	end
 
+	def categories
+		 @locations = Location.order("created_at DESC").paginate(:page => params[:page],:per_page => 24)
 	end
 
 	def category
 		@locations = Location.all.order("created_at DESC").tagged_with(params[:tag]).paginate(:page => params[:page],:per_page => 24)
+		@header=params[:tag].pluralize.capitalize
 		render 'all'
 	end
 
 	def all
 		@locations = Location.all.order("created_at DESC").paginate(:page => params[:page],:per_page => 24)
+		@header="All Locations"
 	end
 
 	def search
 		@locations = Location.all.order("created_at DESC").where("title LIKE ? ", "%#{params[:q]}%").paginate(:page => params[:page],:per_page => 24)
+		@header="Search results"
 		render 'all'
 	end	
 
 	def my
 		@locations = Location.all.order("created_at DESC").where(user_id: current_user.id).order("created_at DESC").paginate(:page => params[:page],:per_page => 24)
-		if @locations.empty?
-			flash[:notice] = "You have no locations created yet!"
-		end
+		# if @locations.empty?
+		# 	flash[:notice] = "You have no locations created yet!"
+		# end
 		render 'all'
 	end
 

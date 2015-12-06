@@ -1,16 +1,18 @@
 
-  <div class="col-md-6 col-xs-12">
+  <div class="col-md-6 col-sm-12 col-xs-12">
       <%= simple_form_for @location do |f| %>
-        <%= f.input :title, input_html: { class: 'form-control' }, wrapper_html: { class: 'form-group' }  %>
-        <%= f.input :description,input_html: { class: 'form-control' }, wrapper_html: { class: 'form-group' }  %>
+
+        <%= f.input :title, input_html: { class: 'form-control', placeholder: "Give this place a name" }, wrapper_html: { class: 'form-group' }  %>
+
+        <%= f.input :description,input_html: { class: 'form-control', placeholder: "Say something more about your experience" }, wrapper_html: { class: 'form-group' }  %>
         <%= f.input :image, :as => :file,input_html: { class: 'form-control' }, wrapper_html: { class: 'form-group' }  %>
-        <%= f.input :lon,input_html: { class: 'form-control' }, wrapper_html: { class: 'form-group' }  %>
-        <%= f.input :lat ,input_html: { class: 'form-control' }, wrapper_html: { class: 'form-group' } %>
+        <%= f.input :lon,input_html: { class: 'form-control', placeholder: "Just click no the map" }, wrapper_html: { class: 'form-group' }  %>
+        <%= f.input :lat ,input_html: { class: 'form-control', placeholder: "Just click no the map" }, wrapper_html: { class: 'form-group' } %>
         <%= f.input :tag_list, :placeholder => "Tags values are separated by commas" ,input_html: { class: 'form-control' }, wrapper_html: { class: 'form-group' } %>	
-        <%= f.button :submit, class: "btn btn-success" %>
+        <%= f.button :submit, class: "btn btn-success form-control" %>
       <% end %>
   </div>
-  <div class="col-md-6 col-xs-12 map_div">
+  <div class="col-md-6 col-sm-12 col-xs-12">
     <div id="map"></div>
   </div>
 

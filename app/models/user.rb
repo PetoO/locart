@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   mount_uploader :avatar, AvatarUploader
   has_many :photos, dependent: :destroy
+  acts_as_voter
 end
