@@ -6,14 +6,16 @@
     </div>
 
     <div class="col-md-8 col-sm-12 col-xs-12">
-        <div class="row ">           
-            <div id="slider1_container" class="col-md-12 col-xs-12">
-                <!-- Slides Container -->
-                <div id="slides" u="slides" style="cursor: move; position: absolute; overflow: hidden; left: 0px; top: 0px;">
-                  <%= image_tag @location.image.url, u: "image" %>
-                  <% @photos.each do |photo| %>
-                    <div><%= image_tag photo.photo.url, u: "image" %></div>
-                  <% end %>
+        <div class="row ">          
+            <div class="col-md-12 col-xs-12 col-xs-12"> 
+                <div id="slider1_container" >
+                    <!-- Slides Container -->
+                    <div id="slides" u="slides" style="cursor: move; position: absolute; overflow: hidden; ">
+                      <%= image_tag @location.image.url, u: "image" %>
+                      <% @photos.each do |photo| %>
+                        <div><%= image_tag photo.photo.url, u: "image" %></div>
+                      <% end %>
+                    </div>
                 </div>
             </div>
            
@@ -102,8 +104,8 @@
                         </li>
                         <% if current_user.name==@location.user.name %>
                             <li class="list-group-item">
-                                <%= link_to "Edit", edit_location_path(@location) , class: "btn btn-default edit_btn"%>
-                                <%= link_to "Delete", location_path(@location), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default edit_btn" %>
+                                <%= link_to "Edit", edit_location_path(@location) , class: "btn btn-success edit_btn"%>
+                                <%= link_to "Delete", location_path(@location), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger edit_btn" %>
                             </li>
                         <% end %>
                     <% end %>
