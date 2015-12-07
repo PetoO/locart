@@ -23,9 +23,13 @@
             <div class="carousel-caption" style="position:absolute;top:5%;">              
                <div class="hidden-xs">
                 <h1> Explore interesting locations!</h1>
-                  <button class="btn" type="button" style="background-color:red;">
-                <i class="glyphicon glyphicon-log-in" style="color:white;font-size:30px"></i>
-                </button>
+                <%= link_to "/all", :class => "btn" ,style: "background-color:red" do %>
+                        
+                       
+                        <i class="glyphicon glyphicon-log-in" style="color:white;font-size:30px"></i>
+                        
+                    <% end %>
+
                 <h3>Existem muitas variações das passagens do Lorem Ipsum disponíveis, mas a maior parte sofreu 
                 alterações de alguma forma, pela injecção de humor, ou de palavras aleatórias que nem sequer parecem suficientemente credíveis. </h3>       
               </div>            
@@ -44,9 +48,12 @@
             <div class="carousel-caption" style="position:absolute;top:5%;">          
                <div class="hidden-xs">
                   <h1>Share your best place!</h1>
-                  <button class="btn" type="button" style="background-color:red;">
-                              <i class="glyphicon glyphicon-log-in" style="color:white;font-size:30px"></i>
-                              </button>
+                   <%= link_to  new_location_path, :class => "btn" ,style: "background-color:red" do %>
+                        
+                       
+                        <i class="glyphicon glyphicon-log-in" style="color:white;font-size:30px"></i>
+                        
+                    <% end %>
                 <h3>Existem muitas variações das passagens do Lorem Ipsum disponíveis, mas a maior parte sofreu 
                 alterações de alguma forma, pela injecção de humor, ou de palavras aleatórias que nem sequer parecem suficientemente credíveis. </h3>
                </div>           
