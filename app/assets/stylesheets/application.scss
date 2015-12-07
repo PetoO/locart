@@ -344,3 +344,37 @@ span.glyphicon{
 		}
 	}
 }
+
+.gallery{
+background-color: black;
+margin-bottom: 10px;
+
+.carousel-inner img {
+  margin: auto;
+}
+.carousel-inner .item img {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+}
+
+@media (max-width: 992px) { 
+	.carousel-inner > .item {
+	  height: 350px;
+	}
+}
+@media (max-width: 768px) { 
+	.carousel-inner > .item {
+  		height: 300px;
+	}
+}
+
+@media (min-width: 992px) { 
+	.carousel-inner > .item {
+	   height: 450px;
+	}
+}

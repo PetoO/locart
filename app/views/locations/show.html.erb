@@ -8,29 +8,45 @@
     <div class="col-md-8 col-sm-12 col-xs-12">
         <div class="row ">          
             <div class="col-md-12 col-xs-12 col-xs-12"> 
-                <div id="slider1_container" >
-                    <!-- Slides Container -->
-                    <div id="slides" u="slides" style="cursor: move; position: absolute; overflow: hidden; ">
-                      <%= image_tag @location.image.url, u: "image" %>
+            <div id="carousel-example-generic" class="carousel slide gallery" data-ride="carousel"  >
+                <div class="carousel-inner" >
+                    <div class="item active" >
+                        <%= image_tag @location.image.url, class:"img-thumbnail" %>
+                    </div> 
                       <% @photos.each do |photo| %>
-                        <div><%= image_tag photo.photo.url, u: "image" %></div>
-                      <% end %>
-                    </div>
-                </div>
+                        <div class="item" >
+                            <%= image_tag photo.photo.url, class:"img-thumbnail" %>
+                        </div>  
+                      <% end %>                      
+                </div>   
+                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>          
+            </div>  
             </div>
            
-            <div class="col-md-6 col-xs-6 text-center"> 
-                    I love this place! :)
-                    <%= link_to like_location_path(@location), :class => "btn" do %>
-                      <span class="glyphicon glyphicon-thumbs-up" style="color:#000000;font-size: 30px; padding-right: 15px;"></span>
+            <div class="col-md-6 col-xs-6 text-center">     
+                    <%= link_to like_location_path(@location), :class => "btn btn-default form-control" ,style: "padding:0px" do %>
+                        
+                       
+                        <span class="glyphicon glyphicon-thumbs-up" style="color:#000000;font-size: 30px;"></span>
+                        
                     <% end %>
             </div>
 
             <div class="col-md-6 col-xs-6 text-center"> 
-                    I don`t like it :(
-                    <%= link_to dislike_location_path(@location), :class => "btn" do %>
-                      <span class="glyphicon glyphicon-thumbs-down" style="color:#000000;font-size: 30px; padding-right: 15px;"></span>
+                
+                    
+                    <%= link_to dislike_location_path(@location), :class => "btn btn-default form-control",style: "padding:0px" do %>
+                        
+                        <span class="glyphicon glyphicon-thumbs-down" style="color:#000000;font-size: 30px;"></span>
                     <% end %>
+                
             </div>
           
             <div class="col-md-12 col-xs-12">
@@ -98,14 +114,14 @@
                     <% if user_signed_in? %>
                         <li class="list-group-item">
                             <%= simple_form_for [@location, @location.photos.build] do |f| %>
-                                <%= f.input :photo, label: "Add Photo to this location", input_html: { class: 'form-control' }, wrapper_html: { class: 'form-group' } %>
+                                <%= f.input :photo, label: "Add Photo to this location", required: true, input_html: { class: 'form-control' }, wrapper_html: { class: 'form-group' } %>
                                 <%= f.button :submit,"Add Photo", class: "btn" %>
                             <% end %>
                         </li>
                         <% if current_user.name==@location.user.name %>
                             <li class="list-group-item">
-                                <%= link_to "Edit", edit_location_path(@location) , class: "btn btn-success edit_btn"%>
-                                <%= link_to "Delete", location_path(@location), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger edit_btn" %>
+                                <%= link_to "Edit Location", edit_location_path(@location) , class: "btn btn-success edit_btn form-control", style:"margin-bottom: 10px;"%>
+                                <%= link_to "Delete Location!", location_path(@location), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger edit_btn form-control" %>
                             </li>
                         <% end %>
                     <% end %>
