@@ -228,6 +228,7 @@ span.glyphicon{
 
 .comment{
 	margin-top: 30px;
+
 }
 
 .edit_btn{
@@ -236,6 +237,9 @@ span.glyphicon{
 
 #comments{
 	margin-top: 30px;
+	padding:10px;
+	border-top: 1px solid #ddd;
+	border-radius: 5px 5px 5px 5px;
 }
 #comment{
 	width: 100%;
@@ -430,28 +434,35 @@ span.glyphicon{
 
 article{
 	p, ul {
-	  margin: 0 0px 30px 0;
-	  font-family: "Times New Roman", Times, serif;
-	  font-size: 18px;
+	  	margin: 0 0px 30px 0;
+	  	font-family: "Times New Roman", Times, serif;
+	  	font-size: 21px;
+	  	padding-left: 25px;
+	  	padding-right: 20px;
 	}
-h1 {
-  font: bold italic 30px Georgia;
-  margin: 0 0 60px 0;
-}
-section {
-	width:800px;
-	text-align: left;
+	ul{
+		margin: 25px 25px 15px 25px;
+	  	font-family: "Times New Roman", Times, serif;
+	  	font-size: 21px;
+	  	padding-left: 25px;
+	  	padding-right: 20px;
+	}
+	h1 {
+	  	font: bold italic 30px Georgia;
+	  	margin: 0 0 60px 0;
+	}
+	section {
+		text-align: left;
 
-}
+	}
 
-h2 {
-font:bold italic 22px Georgia;
-} 
+	h2 {
+		font:bold italic 26px Georgia;
+	} 
 
-h3 {
-font:bold italic 18px Georgia;
-}
-
+	h3 {
+		font:bold italic 18px Georgia;
+	}
 
 }
 
@@ -464,6 +475,9 @@ blockquote{
 p.content{
 	border-bottom: 1px solid #ddd;	
 	font-size: 17px;
+	padding-bottom: 5px;
+	padding-right: 8px;
+	padding-left: 8px;
 }
 div.index-description{
 	font-size: 24px;	
