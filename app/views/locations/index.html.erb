@@ -5,13 +5,13 @@
                 <div class="item active" >
                     <img src=<%= image_path('loc2.jpg')%> class="img-thumbnail"  alt="First slide" >
                     <div class="carousel-caption">
-                        <h3>WELCOME TO</h3>
-                        <img src=<%= image_path('logo.png')%> alt="logo" width="140" height="60">             
+                        <h1>WELCOME TO</h1>
+                        <img src=<%= image_path('logo.png')%> alt="logo" width="238" height="102">             
                             <div class="hidden-xs">
-                                <h3>
-                                    The miracle is this, the more we share, the more we have.
-                                    - Leonard Nimoy
-                                </h3>
+                                <blockquote>
+                                    <p>The miracle is this, the more we share, the more we have.</p>
+                                    <p>— Leonard Nimoy</p>
+                                </blockquote> 
                             </div>
                         </div> 
                     </div>
@@ -23,9 +23,9 @@
                             <%= link_to "/all", :class => "btn btn-red" do %>
                                 <i class="glyphicon glyphicon-log-in index-glyph-big"></i>
                             <% end %>
-                            <h3>Existem muitas variações das passagens do Lorem Ipsum disponíveis, mas a maior parte sofreu 
-                                alterações de alguma forma, pela injecção de humor, ou de palavras aleatórias que nem sequer parecem suficientemente credíveis.
-                            </h3>       
+                            <div class="index-description">
+                            Search beautiful location ideas and get travel inspiration from LocArt, your source for the best travel trips. Enjoy your visit and find what's best for you!
+                            </div>        
                         </div>            
                         <div class="visible-xs"><br>
                             <h4>Explore interesting locations! </h4>
@@ -43,13 +43,13 @@
                             <%= link_to  new_location_path, :class => "btn btn-red" do %>     
                                 <i class="glyphicon glyphicon-log-in index-glyph-big"></i>     
                             <% end %>
-                            <h3>
+                            <div class="index-description">
                                 Create your own memory 
                                 share it with others for century.
                                 It will bound you with everyone,
                                 and so,
                                 you will be happy, like the sun.
-                            </h3>
+                            </div>
                         </div>           
                     <div class="visible-xs"><br>
                        <h4>Share your best place!</h4>

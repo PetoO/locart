@@ -392,6 +392,8 @@ span.glyphicon{
 
 .btn-red{
 	background-color:red;
+	margin-bottom: 35px;
+	margin-top: 5px;
 }
 
 .index-glyph-big{
@@ -431,8 +433,6 @@ article{
 	  font-family: "Times New Roman", Times, serif;
 	  font-size: 18px;
 	}
-}
-
 h1 {
   font: bold italic 30px Georgia;
   margin: 0 0 60px 0;
@@ -449,4 +449,21 @@ font:bold italic 22px Georgia;
 
 h3 {
 font:bold italic 18px Georgia;
+}
+
+
+}
+
+blockquote{
+	margin-top: 25px;
+	border-left: 0px;
+	font-size: 24px;
+}
+
+p.content{
+	border-bottom: 1px solid #ddd;	
+	font-size: 17px;
+}
+div.index-description{
+	font-size: 24px;	
 }
