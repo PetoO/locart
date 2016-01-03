@@ -72,8 +72,10 @@
 </div>
 
 <!-- ****************************** KONIEC GALERIE********************************* -->
-<h2>Latest Locations</h2>
 <section class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <h2>Latest Locations</h2>
+    </div>
     <% @latest_locations.each do |location| %>
     <div class="col-md-3 col-sm-6 col-xs-12">
         <div class="thumbnail" >
@@ -88,8 +90,11 @@
     <% end %>
 </section>
 
-<h2>Best Locations</h2> 
+
 <section class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <h2>Best Locations</h2> 
+    </div>
     <% @most_locations.each do |location| %>
     <div class="col-md-3 col-sm-6 col-xs-12">
         <div class="thumbnail" >    

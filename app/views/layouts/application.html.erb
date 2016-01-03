@@ -21,7 +21,7 @@
               </button>
 
               
-              <a href="/" class="pull-left"><img src=<%= image_path('logo.png')%> width="130" height="50" ></a>
+              <a href="/" class="pull-left"><img src=<%= image_path('logo.png')%> width="130" height="50" alt="nav logo" ></a>
 
             </div>
 
@@ -64,7 +64,7 @@
                                 <%= raw '</div>' %>
 
                                 <%= raw '<div class="form-group hidden-xs">' %>
-                                    <%= f.input_field :remember_me, :inline_label => true, as: :boolean if devise_mapping.rememberable? %>
+                                    <%= f.input_field :remember_me, as: :boolean if devise_mapping.rememberable? %>
                                     Remember me?
                                 <%= raw '</div>' %>
 
@@ -86,7 +86,7 @@
 
         <main class="container center-cont">
             <div class=" visible-xs visible-sm mobile_search">    
-                <form class="search-form" role="search" action="/search" accept-charset="UTF-8" method="get">
+                <form class="search-form" action="/search" accept-charset="UTF-8" method="get">
                     <input name="utf8" type="hidden" value="✓">
                         <div class="form-group has-feedback">
                         <label for="search" class="sr-only">Search</label>
