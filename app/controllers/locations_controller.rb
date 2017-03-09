@@ -2,6 +2,7 @@ class LocationsController < ApplicationController
 	include ActionView::Helpers::TextHelper
 	before_action :find_location, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
 	before_action :authenticate_user!, except: [:index, :show, :category, :all, :search, :categories]
+	respond_to :html, :js
 
 	def index
 		 @latest_locations = Location.order("created_at DESC").paginate(:page => params[:page],:per_page => 4)
